@@ -2,28 +2,18 @@ import React, { useState } from 'react';
 import '../css/Home.css';
 import Dots from './Dots';
 import DotsStatic from './DotsStatic';
+import { useDarkMode } from './DarkModeContext';
 import { Canvas } from 'react-three-fiber';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
-    const [staticDots, setStaticDots] = useState(false);
-    const [darkMode, setDarkMode] = useState(false);	
-	const [isDarkMode, setIsDarkMode] = useState(false);
-	const dotColor = isDarkMode ? '#F5F5F5' : '#191919';  // swap the colors based on the mode
-
-
-
-	function handleThemeToggle() {
-		console.log("Toggling dark mode...");
-		setIsDarkMode(prevMode => !prevMode);
-	}
-	
-	
+	const { isDarkMode, toggleDarkMode, staticDots, toggleStaticDots } = useDarkMode();
 	
   return (
 <div className={`parent ${isDarkMode ? 'dark-mode' : ''}`}>
 
-            <div className="div1" onClick={handleThemeToggle}>
-    </div>
+<div className="div1" onClick={toggleDarkMode}> {/* Updated click handler */}
+            </div>
     <div className="div2"><svg class='icon' xmlns="http://www.w3.org/2000/svg" width="81.866" height="45.088" viewBox="0 0 81.866 45.088">
   <g id="zerzerez" transform="translate(-495 591.169)">
     <path id="Path_5" data-name="Path 5" d="M495-589.869v1.248h7.765c8.373,0,9.489.082,11.985.9a20.209,20.209,0,0,1,11.443,10.064,19.324,19.324,0,0,1-1.051,19.964,21.514,21.514,0,0,1-10.8,8.291c-2.528.772-3.53.837-11.656.837H495v2.463h8.192c8.882,0,9.818-.066,12.313-.936a24.184,24.184,0,0,0,13.085-11.919,21.337,21.337,0,0,0-.033-19.405,23.738,23.738,0,0,0-6.945-8.553A26.283,26.283,0,0,0,515.6-590.1c-2.315-.8-2.939-.854-12.018-.936L495-591.1Z"/>
@@ -57,13 +47,13 @@ const Home = () => {
         <li><a href="#home">Home</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#skills">Skills</a></li>
-        <li><a href="#contact">Contact</a></li>
+		<li><Link to="/contact">Contact</Link></li>
     </ul>
 </div>
 
     <div className="div7"></div>
-    <div className="div8">
-                <button onClick={() => setStaticDots(!staticDots)}>
+	<div className="div8">
+                <button onClick={toggleStaticDots}>
                     {staticDots ? "Switch to Dynamic Dots" : "Switch to Static Dots"}
                 </button>
             </div>
