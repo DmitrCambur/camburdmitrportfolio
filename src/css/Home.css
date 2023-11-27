@@ -1,0 +1,251 @@
+.parent {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
+    grid-template-rows: 0.5fr repeat(6, 1fr) 0.5fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: 'JetBrains Mono', monospace;
+    color: #191919;
+    background-color: #F5F5F5;
+}
+
+.parent > div {
+    box-sizing: border-box;
+}
+
+.div1 { grid-area: 1 / 1 / 2 / 2; border-right: none; border-bottom: none;     background-color: #191919;
+    cursor: pointer;     border: 1px solid #191919;}
+    .div2 { 
+        grid-area: 8 / 12 / 9 / 13;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #191919;     
+        border-right: none;        
+        border-bottom: none;          
+        padding: 13px;                
+        box-sizing: border-box;  
+    }
+    
+
+    .div2 svg {
+        max-width: 100%;  
+        max-height: 100%;  
+        display: block;  
+    }
+    
+.div3 { 
+    grid-area: 2 / 2 / 8 / 12;
+    outline: 1px solid #191919;
+    position: relative;
+}
+.canvas-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;  /* Ensure it takes the full width */
+    height: 100%; /* Ensure it takes the full height */
+    z-index: 1;   /* This ensures the canvas stays below other content */
+}
+.div4 { grid-area: 2 / 2 / 4 / 4; border-right: none; z-index: 3; }
+.div5 { grid-area: 2 / 10 / 4 / 12; border-left: none; z-index: 3;}
+.div6 { grid-area: 6 / 2 / 8 / 4; border-right: none; z-index: 3;}
+.div7 { grid-area: 6 / 10 / 8 / 12; border-left: none; z-index: 3; }
+.div8 { 
+    grid-area: 8 / 1 / 9 / 2;
+    border: 1px solid #191919;  
+    border-left: none;            
+    border-bottom: none;        
+}
+.div8 {
+    /* Existing styles */
+    position: relative; /* Ensures child elements are positioned relative to this div */
+}
+
+.div8 button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;        /* Removes the default border */
+    background: transparent; /* Ensures the button doesn't add any background color */
+    cursor: pointer;     /* Cursor changes to hand when hovering over button */
+    padding: 0;          /* Removes default padding */
+    font-size: inherit;  /* Inherits font size from parent, can be adjusted */
+    color: inherit;      /* Inherits color from parent, can be adjusted */
+}
+
+.div8 button:focus {
+    outline: none;       /* Removes the default focus outline, but be careful about accessibility concerns */
+}
+
+
+.div9 { 
+    grid-area: 1 / 12 / 2 / 13;
+    border: 1px solid #191919; 
+    border-top: none;           
+    border-right: none;       
+}
+
+
+.div4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    padding: 10px;
+    align-items: left;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.div4 h1 {
+    font-weight: 700; /* Use the bold weight for h1 */
+    font-size: 2.7em; /* Adjust this value to your liking */
+}
+
+.div4 h2 {
+    font-weight: 400; /* Regular weight for h2 */
+    font-size: 1.5em; /* Adjust this value to your liking */
+    padding-left: 2px;
+}
+
+.div5 {
+    padding: 10px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1em; /* Adjust as necessary */
+    overflow-y: auto; /* Adds a scroll if the content is too much */
+    line-height: 1.5; /* Adjust for better readability */
+    text-align: right;
+    scroll-behavior: smooth;
+}
+.div5::-webkit-scrollbar {
+    display: none;
+}
+/* Remove scrollbar for Firefox */
+.div5 {
+    scrollbar-width: none; /* Firefox 64+ */
+}
+
+/* Remove scrollbar for Internet Explorer and Edg	 e */
+.div5 {
+    -ms-overflow-style: none; /* IE 11+ */
+}
+
+.div6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-left: 10px;  /* or adjust this value as needed */
+    padding-bottom: 10px;  /* padding to ensure the list doesn't touch the very bottom */
+}
+.div6 ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.div6 li {
+    position: relative;
+}
+
+.div6 a {
+    display: inline-block;
+    padding-left: 20px;
+    transition: padding-left 0.3s ease;
+    text-decoration: none;
+}
+
+.div6 a:hover {
+    padding-left: 30px;
+}
+
+.div6 a:hover::before {
+    content: '';
+    position: absolute;
+    left: 2PX;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    background-color: #191919;;
+    transition: all 0.3s ease;
+}
+
+
+.portfolio-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.portfolio-list li {
+    margin-bottom: 10px;  /* adjust this value for spacing between items */
+}
+
+.portfolio-list a {
+    text-decoration: none;
+    color: #191919;  /* or any other color */
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1.2em;  /* adjust this value for font size */
+}
+
+.portfolio-list a:hover {
+    text-decoration: none;  /* optional: style for hover effect */
+}
+
+
+/* Dark Mode Styles */
+.parent.dark-mode {
+	color: #F5F5F5 !important;
+    background-color: #191919 !important;
+}
+
+
+.dark-mode .div1 {
+    background-color: #F5F5F5;
+    border: 1px solid #F5F5F5;
+}
+
+.dark-mode .div2 {
+    border: 1px solid #F5F5F5;
+	border-right: none;        
+	border-bottom: none;    
+}
+
+.dark-mode .div3 {
+    outline: 1px solid #F5F5F5;
+}
+
+.dark-mode .div8 {
+    border: 1px solid #F5F5F5;
+	border-left: none;            
+    border-bottom: none;  
+}
+
+.dark-mode .div9 {
+    border: 1px solid #F5F5F5;
+	border-top: none;           
+    border-right: none; 
+}
+
+.dark-mode .div4 h1, .dark-mode .div4 h2 {
+    color: #F5F5F5;
+}
+
+.dark-mode .div5 {
+    color: #F5F5F5;
+}
+
+.dark-mode .div6 a:hover::before {
+    background-color: #F5F5F5;
+}
+
+.dark-mode .portfolio-list a {
+    color: #F5F5F5;
+}
+
+.dark-mode .icon {
+    fill: white; /* Or any desired color for dark mode */
+}
