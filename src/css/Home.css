@@ -230,12 +230,22 @@
     border-right: none; 
 }
 
+
 .dark-mode .div4 h1, .dark-mode .div4 h2 {
     color: #F5F5F5;
 }
 
 .dark-mode .div5 {
     color: #F5F5F5;
+}
+.input-light-mode {
+    background-color: black;
+    color: white;
+}
+
+.input-dark-mode {
+    background-color: white;
+    color: black;
 }
 
 .dark-mode .div6 a:hover::before {
@@ -245,7 +255,14 @@
 .dark-mode .portfolio-list a {
     color: #F5F5F5;
 }
-
+.lines-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000 !important; /* Ensure it's behind other content */
+}
 .dark-mode .icon {
     fill: white; /* Or any desired color for dark mode */
 }

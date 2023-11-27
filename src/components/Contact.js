@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/Home.css';
 import Dots from './Dots';
 import DotsStatic from './DotsStatic';
 import { Canvas } from 'react-three-fiber';
 import { useDarkMode } from './DarkModeContext';
 import { Link } from 'react-router-dom';
+import Lines from './Lines'; 
 
-const Home = () => {
+const Contact = () => {
 	const { isDarkMode, toggleDarkMode, staticDots, toggleStaticDots } = useDarkMode();
 
   return (
@@ -22,32 +23,22 @@ const Home = () => {
 </svg>
 </div>
 <div className="div3">
-                <div className="canvas-container">
-				<Canvas
-    orthographic
-    camera={{ zoom: 50 }}
-    colorManagement={false}
-    resize={{ polyfill: ResizeObserver }}
->
-<color attach="background" args={[isDarkMode ? '#191919' : '#F5F5F5']} />
-
-    {staticDots ? <DotsStatic isDarkMode={isDarkMode}/> : <Dots isDarkMode={isDarkMode}/>}
-</Canvas>
-                </div>
+                <Lines className="lines-background" /> {/* Apply the class */}
+                {/* Other content of div3 */}
             </div>
     <div className="div4">
         <h1>Dmitr Cambur</h1>
         <h2>FronDDDt-End Developer</h2>
     </div>
 	<div className="div5">
-                <form>
+	<form>
                     <label htmlFor="name">Name:</label><br/>
-                    <input type="text" id="name" name="name"/><br/>
+                    <input type="text" id="name" name="name" className={isDarkMode ? 'input-dark-mode' : 'input-light-mode'}/><br/>
                     <label htmlFor="email">Email:</label><br/>
-                    <input type="email" id="email" name="email"/><br/>
+                    <input type="email" id="email" name="email" className={isDarkMode ? 'input-dark-mode' : 'input-light-mode'}/><br/>
                     <label htmlFor="message">Message:</label><br/>
-                    <textarea id="message" name="message" rows="4" cols="50"></textarea><br/>
-                    <input type="submit" value="Submit"/>
+                    <textarea id="message" name="message" rows="4" cols="50" className={isDarkMode ? 'input-dark-mode' : 'input-light-mode'}></textarea><br/>
+                    <input type="submit" value="Submit" className={isDarkMode ? 'input-dark-mode' : 'input-light-mode'}/>
                 </form>
             </div>
       <div className="div6">
@@ -72,4 +63,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Contact

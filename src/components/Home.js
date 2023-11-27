@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/Home.css';
 import Dots from './Dots';
 import DotsStatic from './DotsStatic';
