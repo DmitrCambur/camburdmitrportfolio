@@ -1,14 +1,11 @@
 import React from 'react';
 import '../css/Home.css';
-import Dots from './Dots';
-import DotsStatic from './DotsStatic';
-import { Canvas } from 'react-three-fiber';
 import { useDarkMode } from './DarkModeContext';
 import { Link } from 'react-router-dom';
 import Lines from './Lines'; 
 
 const Contact = () => {
-	const { isDarkMode, toggleDarkMode, staticDots, toggleStaticDots } = useDarkMode();
+	const { isDarkMode, toggleDarkMode} = useDarkMode();
 
   return (
 <div className={`parent ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -52,9 +49,6 @@ const Contact = () => {
 
     <div className="div7"></div>
 	<div className="div8">
-                <button onClick={toggleStaticDots}>
-                    {staticDots ? "Switch to Dynamic Dots" : "Switch to Static Dots"}
-                </button>
             </div>
 
     <div className="div9"></div>
