@@ -5,53 +5,63 @@ const Lines = () => {
     const ref = useRef();
 
     useEffect(() => {
-        // Define dimensions and scales
-        const width = 1152;
-        const height = 760;
-        const marginTop = 60;
-        const marginRight = 10;
-        const marginBottom = 20;
-        const marginLeft = 10;
-        const overlap = 16;
+        const drawMountains = (width, height) => {
+            // Clear any existing content
+            d3.select(ref.current).selectAll("svg").remove();
 
-        // Create an SVG element
-        const svg = d3.select(ref.current)
-            .attr("width", width)
-            .attr("height", height)
-            .attr("viewBox", [0, 0, width, height]);
+            const svg = d3.select(ref.current)
+                .append("svg")
+                .attr("width", width)
+                .attr("height", height)
+                .attr("viewBox", [0, 0, width, height]);
 
-        // Load and process the data
-        d3.csv("../assets/pulsar.csv", d3.autoType).then(pulsar => {
-            // Define scales based on the data
-            const x = d3.scaleLinear()
-                .domain(d3.extent(pulsar, d => d[0]))
-                .range([marginLeft, width - marginRight]);
+            // Define the number of lines and the maximum mountain height
+            const numberOfLines = 20;
+            const maxMountainHeight = height / (1 * numberOfLines); // Reduced height
+            const peakDistance = width / 3; // The distance between peaks
+            const lineMargin = maxMountainHeight / 100; // Margin between lines
 
-            const z = d3.scalePoint()
-                .domain(pulsar.map(d => d[2]))
-                .range([marginTop, height - marginBottom]);
+            // Generate mountain line data
+            const mountains = Array.from({ length: numberOfLines }, (_, i) => {
+                const peakHeight = (numberOfLines - i) * (maxMountainHeight - lineMargin) / numberOfLines;
+                const baseLineY = height - i * (maxMountainHeight - lineMargin / 2);
+                return [
+                    { x: 0, y: baseLineY }, // start at left
+                    { x: width / 3 - peakDistance / 2, y: baseLineY }, // before peak
+                    { x: width / 3, y: baseLineY - peakHeight }, // peak
+                    { x: width / 3 + peakDistance / 2, y: baseLineY }, // after peak
+                    { x: width, y: baseLineY } // end at right
+                ];
+            });
 
-            const y = d3.scaleLinear()
-                .domain(d3.extent(pulsar, d => d[1]))
-                .range([0, -overlap * z.step()]);
-
-            const line = d3.line()
-                .defined(d => !isNaN(d[1]))
-                .x(d => x(d[0]))
-                .y(d => y(d[1]));
-
-            // Draw lines
+            // Draw the lines
             svg.selectAll("path")
-                .data(d3.group(pulsar, d => d[2]))
+                .data(mountains)
                 .join("path")
-                .attr("transform", d => `translate(0,${z(d[0])})`)
-                .attr("d", d => line(d[1]))
+                .attr("d", d3.line().x(d => d.x).y(d => d.y))
                 .attr("fill", "none")
-                .attr("stroke", "black");
+                .attr("stroke", "black")
+                .attr("stroke-width", 1)
+                .attr("stroke-linecap", "round");
+        };
+
+        // Set up a resize observer to redraw the chart when the container size changes
+        const resizeObserver = new ResizeObserver(entries => {
+            if (!entries || entries.length === 0) {
+                return;
+            }
+            const { width, height } = entries[0].contentRect;
+            drawMountains(width, height);
         });
+
+        // Observe the ref element for size changes
+        resizeObserver.observe(ref.current);
+
+        // Clean up the observer on component unmount
+        return () => resizeObserver.disconnect();
     }, []);
 
-    return <svg ref={ref} style={{ width: "100%", height: "auto" }} />;
+    return <div ref={ref} className="lines-container" style={{ width: '100%', height: '100%' }} />;
 };
 
 export default Lines;

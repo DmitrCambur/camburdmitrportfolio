@@ -255,14 +255,12 @@
 .dark-mode .portfolio-list a {
     color: #F5F5F5;
 }
-.lines-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 10000 !important; /* Ensure it's behind other content */
+.lines-container {
+  width: 100%;  /* Make the div take the full width of its parent */
+  height: 100%; /* Make the div take the full height of its parent */
+  position: relative; /* Establish a positioning context */
 }
+
 .dark-mode .icon {
     fill: white; /* Or any desired color for dark mode */
 }
