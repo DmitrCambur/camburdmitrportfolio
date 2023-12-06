@@ -4,84 +4,94 @@ import * as d3 from 'd3';
 const Lines = () => {
     const ref = useRef();
     const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+    let lastMouseX = 0; // Track the last mouse X position
 
-    useEffect(() => {
-        // Function to draw the mountain lines
-        const drawMountains = () => {
-            // Clear any existing content
-            d3.select(ref.current).selectAll("svg").remove();
+    // Function to generate mountain line data
+    const generateMountains = (numberOfLines, maxMountainHeight, lineMargin, width, height) => {
+        return Array.from({ length: numberOfLines }, (_, i) => {
+            const peakHeight = Math.random() * maxMountainHeight;
+            const baseLineY = height - i * lineMargin; // Spread lines evenly
+            return [
+                { x: 0, y: baseLineY },
+                { x: lastMouseX, y: baseLineY - peakHeight },
+                { x: width, y: baseLineY }
+            ];
+        });
+    };
 
-            const { width, height } = dimensions;
-            const svg = d3.select(ref.current)
+    // Function to draw the mountain lines
+    const drawMountains = (width, height) => {
+        const numberOfLines = 20;
+        const maxMountainHeight = height / 4; 
+        const lineMargin = 10; // Adjust line margin for even spread
+        const mountains = generateMountains(numberOfLines, maxMountainHeight, lineMargin, width, height);
+
+        let svg = d3.select(ref.current).select("svg");
+        if (svg.empty()) {
+            svg = d3.select(ref.current)
                 .append("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .attr("viewBox", [0, 0, width, height]);
+        }
 
-            // Define the number of lines and the maximum mountain height
-            const numberOfLines = 20;
-            const maxMountainHeight = height / 2; // Adjust the maximum mountain height
-            const lineMargin = 10; // Margin between lines
+        svg.selectAll("path")
+            .data(mountains)
+            .join("path")
+            .attr("d", d3.line().x(d => d.x).y(d => d.y))
+            .attr("fill", "none")
+            .attr("stroke", "black")
+            .attr("stroke-width", 1)
+            .attr("stroke-linecap", "round");
 
-            // Generate mountain line data
-            const mountains = Array.from({ length: numberOfLines }, (_, i) => {
-                const peakHeight = Math.random() * maxMountainHeight;
-                const baseLineY = height - i * lineMargin;
-                return [
-                    { x: 0, y: baseLineY },
-                    { x: Math.random() * width, y: baseLineY - peakHeight },
-                    { x: width, y: baseLineY }
-                ];
-            });
-
-            // Draw the lines
+        // Function to update line peaks based on mouse position with a transition
+        const updateLinePeaks = (mouseX) => {
+            lastMouseX = mouseX;
+            const updatedMountains = generateMountains(numberOfLines, maxMountainHeight, lineMargin, width, height);
             svg.selectAll("path")
-                .data(mountains)
-                .join("path")
-                .attr("d", d3.line().x(d => d.x).y(d => d.y))
-                .attr("fill", "none")
-                .attr("stroke", "black")
-                .attr("stroke-width", 1)
-                .attr("stroke-linecap", "round");
-
-            // Event listener for mouse movement to adjust the peak
-            svg.on("mousemove", function(event) {
-                const mousePosition = d3.pointer(event);
-                const mouseX = mousePosition[0];
-
-                // Update the lines based on mouse X position
-                svg.selectAll("path").data(mountains).attr("d", d => {
-                    const middleIndex = Math.floor(d.length / 2);
-                    d[middleIndex].x = mouseX;
-                    return d3.line().x(d => d.x).y(d => d.y)(d);
-                });
-            });
+                .data(updatedMountains)
+                .transition()
+                .duration(800)
+                .attr("d", d3.line().x(d => d.x).y(d => d.y));
         };
 
-        // Set up a resize observer to update dimensions
-        const resizeObserver = new ResizeObserver(entries => {
-            if (!entries || entries.length === 0) {
-                return;
-            }
-            setDimensions({
-                width: entries[0].contentRect.width,
-                height: entries[0].contentRect.height
-            });
-        });
+        // Event handler for mouse movement
+        const handleMouseMove = (event) => {
+            const mousePosition = d3.pointer(event);
+            const mouseX = mousePosition[0];
+            updateLinePeaks(mouseX);
+        };
 
-        // Start observing for resize
+        // Attach event listener to window
+        d3.select(window).on("mousemove", handleMouseMove);
+    };
+
+    // Set up a resize observer to update dimensions
+    const resizeObserver = new ResizeObserver(entries => {
+        if (!entries || entries.length === 0) {
+            return;
+        }
+        setDimensions({
+            width: entries[0].contentRect.width,
+            height: entries[0].contentRect.height
+        });
+    });
+
+    // Start observing for resize
+    useEffect(() => {
         resizeObserver.observe(ref.current);
 
         // Clean up on unmount
         return () => {
             resizeObserver.disconnect();
+            d3.select(window).on("mousemove", null);
         };
     }, []);
 
     // Redraw the mountains whenever the dimensions change
     useEffect(() => {
         if (dimensions.width && dimensions.height) {
-            drawMountains();
+            drawMountains(dimensions.width, dimensions.height);
         }
     }, [dimensions]);
 
