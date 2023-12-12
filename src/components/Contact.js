@@ -39,10 +39,10 @@ const Contact = () => {
                 </form>
             </div>
       <div className="div6">
-    <ul className="portfolio-list">
+      <ul className="portfolio-list">
 	<li><Link to="/">Home</Link></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
+  <li><Link to="/projects">Projects</Link></li>
+  <li><Link to="/skills">Skills</Link></li>
 		<li><Link to="/contact">Contact</Link></li>
     </ul>
 </div>

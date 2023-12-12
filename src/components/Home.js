@@ -43,10 +43,10 @@ const Home = () => {
         In the dynamic world of digital landscapes, I'm a frontend web developer passionately blending creativity and innovation. Each line of code, a pixel of design, weaves captivating user experiences. This portfolio showcases my relentless pursuit of excellence, where I merge aesthetics and functionality to create immersive, modern web experiences. Join me on this forward-thinking journey into the realm of frontend development.
       </div>
       <div className="div6">
-    <ul className="portfolio-list">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="#skills">Skills</a></li>
+      <ul className="portfolio-list">
+	<li><Link to="/">Home</Link></li>
+  <li><Link to="/projects">Projects</Link></li>
+  <li><Link to="/skills">Skills</Link></li>
 		<li><Link to="/contact">Contact</Link></li>
     </ul>
 </div>
