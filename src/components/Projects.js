@@ -1,18 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../css/Projects.css';
 import { useDarkMode } from './DarkModeContext';
 import { Link } from 'react-router-dom';
 
 const Projects = () => {
 	const { isDarkMode, toggleDarkMode} = useDarkMode();
+  const [backgroundVideo, setBackgroundVideo] = useState('');
     // Mock data for projects
     const projects = [
-      { id: "01", title: "Stock Dashboard", description:"Created using React.js, is a responsive and interactive tool for real-time stock market information. Styled with Tailwind CSS, it presents a modern and user-friendly interface. The dashboard integrates Finnhub API for the latest stock prices, ensuring up-to-date data. Interactive charts, made with Rechart, aid in understanding market trends. Developed over 2 weeks with a total effort of approximately 33 hours, this project combines multiple technologies to deliver a practical and visually appealing web application. The focus was on managing dynamic data with React.js and showcasing stock trends in an easy-to-understand format, making it a valuable tool for anyone interested in the stock market."  },
-      { id: "02", title: "Marcus Aurelius", description: "The Dynamic Transitions Website is an exploration into artistic web design, featuring a captivating voronoi stippling effect on a Marcus Aurelius statue for the landing page background. This innovative effect creates a dynamic image from moving dots that, from a distance, form a recognizable image of the statue. Alongside this, the site introduces an engaging GSAP-powered animation: a circle that bounces and expands to fill the screen, serving as an interactive start to the website. Following the landing page is a section on Marcus Aurelius, presented in a concise, minimalist style, complementing the artistic focus of the site. The color scheme and design of the website were carefully chosen to echo the themes of my portfolio and this document, ensuring a consistent and harmonious user experience. This project highlights my ability to blend complex visual elements with informative content, creating a unified and immersive web experience that balances artistic flair with practicality." },
-      { id: "03", title: "Barcode/OCR Scanner", description: "My third prototype is a Barcode & OCR Scanning Web Application, designed to allow users to scan barcodes and read text from images directly on the web interface. Utilizing html5-qrcode, the application enables barcode scanning using the device's camera, a feature that was both challenging and rewarding to implement. For the OCR functionality, I integrated tesseract.js, a powerful library for converting images to text. This allowed the application to process and display text from images, a crucial aspect of the project. However, I encountered limitations with the OCR technology, which proved to be a valuable learning experience in understanding and working within the confines of current web technologies. A key achievement of this prototype was its ability to scan barcodes and display the barcode numbers, despite the challenges in extending its functionality due to technological constraints. This project was not just about creating a functional tool but also about exploring and learning new technologies in web development, highlighting the importance of adaptability and problem-solving in the face of technical limitations. The Barcode & OCR Scanning Web Application stands as evidence of my growing ability to integrate various web technologies to create practical and innovative solutions." },
-      { id: "04", title: "ThreeJS Background", description: "For my fourth prototype, I ventured into the world of 3D web graphics, using React.js and three.js. The main focus was to create an eye-catching 3D background for my portfolio's homepage. This background featured lots of small balls moving in a special way, which created a sense of depth as they seemed to move 'forward' and 'backward.' Using three.js was key to achieving this 3D effect, as it let me create and animate these balls in a 3D space, making the background lively and modern. Integrating these 3D elements with React.js was challenging but rewarding, showing how React.js can be used for more than just regular web development and can enter new areas of creativity and design. I carefully designed the movement and look of the 3D elements to match the overall style of my portfolio, ensuring a smooth and unified user experience across the site. This project was more than just a technical task; it was a showcase of how to use advanced web technologies to create unique and engaging web environments. It demonstrated my ability to quickly learn and apply new technologies in creative ways." },
+      { id: "01", title: "Stock Dashboard", description:"Created using React.js, is a responsive and interactive tool for real-time stock market information. Styled with Tailwind CSS, it presents a modern and user-friendly interface. The dashboard integrates Finnhub API for the latest stock prices, ensuring up-to-date data. Interactive charts, made with Rechart, aid in understanding market trends. Developed over 2 weeks with a total effort of approximately 33 hours, this project combines multiple technologies to deliver a practical and visually appealing web application. The focus was on managing dynamic data with React.js and showcasing stock trends in an easy-to-understand format, making it a valuable tool for anyone interested in the stock market.", 
+      videoUrl: "/assets/stockdashboard.mp4"  },
+      { id: "02", title: "Marcus Aurelius", description: "The Dynamic Transitions Website is an exploration into artistic web design, featuring a captivating voronoi stippling effect on a Marcus Aurelius statue for the landing page background. This innovative effect creates a dynamic image from moving dots that, from a distance, form a recognizable image of the statue. Alongside this, the site introduces an engaging GSAP-powered animation: a circle that bounces and expands to fill the screen, serving as an interactive start to the website. Following the landing page is a section on Marcus Aurelius, presented in a concise, minimalist style, complementing the artistic focus of the site. The color scheme and design of the website were carefully chosen to echo the themes of my portfolio and this document, ensuring a consistent and harmonious user experience. This project highlights my ability to blend complex visual elements with informative content, creating a unified and immersive web experience that balances artistic flair with practicality.", 
+      videoUrl: "/assets/marcusaurelius.mp4"   },
+      { id: "03", title: "Barcode/OCR Scanner", description: "My third prototype is a Barcode & OCR Scanning Web Application, designed to allow users to scan barcodes and read text from images directly on the web interface. Utilizing html5-qrcode, the application enables barcode scanning using the device's camera, a feature that was both challenging and rewarding to implement. For the OCR functionality, I integrated tesseract.js, a powerful library for converting images to text. This allowed the application to process and display text from images, a crucial aspect of the project. However, I encountered limitations with the OCR technology, which proved to be a valuable learning experience in understanding and working within the confines of current web technologies. A key achievement of this prototype was its ability to scan barcodes and display the barcode numbers, despite the challenges in extending its functionality due to technological constraints. This project was not just about creating a functional tool but also about exploring and learning new technologies in web development, highlighting the importance of adaptability and problem-solving in the face of technical limitations. The Barcode & OCR Scanning Web Application stands as evidence of my growing ability to integrate various web technologies to create practical and innovative solutions.", 
+      videoUrl: "/assets/barcodeocr.mp4"   },
+      { id: "04", title: "ThreeJS Background", description: "For my fourth prototype, I ventured into the world of 3D web graphics, using React.js and three.js. The main focus was to create an eye-catching 3D background for my portfolio's homepage. This background featured lots of small balls moving in a special way, which created a sense of depth as they seemed to move 'forward' and 'backward.' Using three.js was key to achieving this 3D effect, as it let me create and animate these balls in a 3D space, making the background lively and modern. Integrating these 3D elements with React.js was challenging but rewarding, showing how React.js can be used for more than just regular web development and can enter new areas of creativity and design. I carefully designed the movement and look of the 3D elements to match the overall style of my portfolio, ensuring a smooth and unified user experience across the site. This project was more than just a technical task; it was a showcase of how to use advanced web technologies to create unique and engaging web environments. It demonstrated my ability to quickly learn and apply new technologies in creative ways.", 
+      videoUrl: "/assets/3Dbackground.mp4"   },
       // Add more projects as needed
   ];
+
+  const handleHover = (videoFileName) => {
+    setBackgroundVideo(process.env.PUBLIC_URL + videoFileName);
+};
   return (
 <div className={`parent ${isDarkMode ? 'dark-mode' : ''}`}>
 
@@ -26,24 +35,38 @@ const Projects = () => {
 </svg>
 </div>
 <div className="div3">
-            </div>
+    <video 
+        src={backgroundVideo} 
+        autoPlay 
+        loop 
+        muted 
+        className={`video-background ${backgroundVideo ? 'show' : ''}`} 
+    />
+    <div className="video-gradient"></div>
+    {/* Other contents of div3 */}
+</div>
+
     <div className="div4">
         <h1>Dmitr Cambur</h1>
         <h2>FronTTTt-End Developer</h2>
     </div>
     <div className="div5">
-                {projects.map(project => (
-                    <article className="episode" key={project.id}>
-                        <div className="episode__number">{project.id}</div>
-                        <div className="episode__content">
-                            <div className="title">{project.title}</div>
-                            <div className="story">
-                                <p>{project.description}</p>
-                            </div>
-                        </div>
-                    </article>
-                ))}
+    {projects.map(project => (
+        <article 
+            className="episode" 
+            key={project.id}
+            onMouseEnter={() => handleHover(project.videoUrl)}
+            onMouseLeave={() => handleHover('')}>
+            <div className="episode__number">{project.id}</div>
+            <div className="episode__content">
+                <div className="title">{project.title}</div>
+                <div className="story">
+                    <p>{project.description}</p>
+                </div>
             </div>
+        </article>
+    ))}
+</div>
       <div className="div6">
       <ul className="portfolio-list">
 	<li><Link to="/">Home</Link></li>

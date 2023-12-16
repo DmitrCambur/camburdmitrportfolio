@@ -32,7 +32,7 @@
     
 
     .div2 svg {
-        max-width: 100%;    
+        max-width: 100%;  
         max-height: 100%;  
         display: block;  
     }
@@ -122,19 +122,18 @@
     text-align: justify;
     scroll-behavior: smooth;
 }
-
-/* Responsive design for smaller screens */
 @media (max-width: 768px) {
     .div5 {
         /* Adjust the grid area to span the full width of the grid on smaller screens */
-        grid-area: 2 / 1 / 8 / -1;
+        grid-area: 2 / 6 / 8 / -1;
         padding: 10px;
         text-align: justify;
     }
 }
 
+
 /* Further adjustments for even smaller screens */
-@media (max-width: 576px) {
+@media (min-width: 576px) {
     .div5 {
         /* Fine-tuning the text size and padding for readability */
         font-size: 0.9em;
@@ -144,6 +143,20 @@
     .episode__content .story {
         font-size: 14px; /* Adjust the font size for smaller screens */
     }
+}
+@media (max-width: 576px) {
+    .skills-table {
+        grid-template-columns: 1fr; /* Single column layout for smaller screens */
+        gap: 5px; /* Smaller gap between items */
+        max-width: 100%; /* Use full width */
+        padding: 10px; /* Adjust padding */
+    }
+
+    .skill-icon img {
+        max-width: 50%; /* Smaller icons for smaller screens */
+    }
+
+    /* Adjust any other styles as needed */
 }
 
 /* Hide scrollbars while still allowing scrolling */
@@ -272,7 +285,7 @@
 
 .input-dark-mode {
     background-color: white;
-    color: #191919;
+    color: black;
 }
 
 .dark-mode .div6 a:hover::before {
@@ -292,91 +305,79 @@
     fill: white; /* Or any desired color for dark mode */
 }
 
-.episode {
+.skills-table {
     display: grid;
-    grid-template-columns: 1fr 3fr;
-    position: relative;
-  }
-  
-  .episode__number {
-    font-size: 10vw;
-    font-weight: 600;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    text-align: center;
-    height: calc(10vw + 20px);
-    transition: all 0.2s ease-in;
-  }
-  
-  .episode__content {
-    border-top: 1px solid #191919;
-    display: grid;
-    grid-template-columns: 1fr 4fr;
-    grid-gap: 10px;
-    padding: 15px 0;
-  }
-  
-  .episode__content .title {
-    font-weight: 600
-  }
-  
-  .episode__content .story {
-    line-height: 26px;
-  }
-  
-  @media (max-width: 600px) {
-    .episode__content {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  @media (max-width: 576px) {
-    .episode__content .story {
-      font-size: 15px;
-    }
-  }
-  .video-background {
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    grid-auto-rows: minmax(100px, auto); /* Dynamic row height */
+    gap: 10px; /* Space between grid items */
+    padding: 50px; /* Padding around the grid */
+    max-width: 450px; /* Adjust based on your layout */
+    margin: 0 auto; /* Centering the grid */
+}
+
+.skill-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: right;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    will-change: transform, box-shadow; /* Optimizes animations */
+    position: relative; /* Required for the pseudo-element */
+    overflow: hidden; /* Keeps pseudo-element within the icon's bounds */
+}
+
+.skill-icon img {
+    max-width: 80%; /* Adjust size of the icon */
+    transition: transform 0.3s ease;
+}
+
+.skill-icon::after {
+    content: '';
     position: absolute;
-    left: 30;
     top: 0;
-    width: 73%;
-    height: 70%;
-    object-fit: cover;
-    z-index: 0; /* Ensure it's behind the content */
-    opacity: 0; /* Initially hidden */
-    transition: opacity 1s ease;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
 }
 
-.video-background.show {
-    opacity: 1; /* Show the video/GIF */
+.skill-icon:hover {
+    transform: scale(1.05); /* Slightly enlarge the icon */
 }
 
-@media (max-width: 576px) {
-    .video-background {
-        left: 0;
-        width: 100%;
-        height: auto;
-    }
+.skill-icon:hover::after {
+    opacity: 1; /* Show the overlay on hover */
+}
 
-    /* Adjust the .div5 grid area for smaller screens */
-    .div5 {
-        grid-area: 2 / 1 / 8 / -1;
-        /* Other necessary adjustments for .div5 */
-    }
+.skill-description {
+    position: absolute;
+    left: 110%; /* Position to the right of the icon */
+    top: 50%;
+    transform: translateX(-30px) translateY(-50%); /* Adjust for alignment */
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index: 2;
+    white-space: nowrap; /* Prevents text wrapping */
+    /* Add more styling for the description text as needed */
+}
 
-    /* Further adjustments for other elements as needed */
-    .div4, .div6, .div7, .div8, .div9 {
-        /* Adjust grid areas or other properties for smaller screens */
-    }
+.skill-icon:hover .skill-description,
+.skill-icon.selected .skill-description {
+    /* Animation on hover and when selected */
+    transform: translateX(0) translateY(-50%);
+    opacity: 1;
+}
 
-    /* Adjust the episode content layout for smaller screens */
-    .episode__content {
-        grid-template-columns: 1fr;
-        /* Other adjustments as needed */
-    }
+/* Adjustments for when a skill is selected */
 
-    .episode__content .story {
-        font-size: smaller; /* Adjust the font size */
-    }
+.skills-table.one-selected .skill-icon:not(.selected):hover {
+    transform: none; /* No scale effect */
+    box-shadow: none; /* No shadow */
+}
+
+.skill-icon.selected .skill-description {
+    display: block; /* Ensure description is visible for selected icon */
 }

@@ -264,3 +264,13 @@
 .dark-mode .icon {
     fill: white; /* Or any desired color for dark mode */
 }
+@media (max-width: 576px) {
+    .div5 {
+        font-size: 0.8em; /* Smaller font size for phone screens */
+        text-align: left; /* Adjust text alignment if necessary */
+        padding: 0px; /* Adjust padding for smaller screens */
+        /* Additional styling adjustments for smaller screens */
+    }
+
+    /* Adjustments for other elements in .div5 as needed */
+}

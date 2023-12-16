@@ -1,11 +1,46 @@
-import React from 'react';
-import '../css/Home.css';
+import React, { useState } from 'react';
+import '../css/Skills.css';
 import { useDarkMode } from './DarkModeContext';
 import { Link } from 'react-router-dom';
-
+import figmadark from '../assets/figmadark.png'
+import adobexddark from '../assets/adobexddark.png'
+import mongodbdark from '../assets/mongodbdark.png'
+import mysqldark from '../assets/mysqldark.png'
+import gitdark from '../assets/gitdark.png'
+import phpdark from '../assets/phpdark.png'
+import tailwinddark from '../assets/tailwinddark.png'
+import vuejsdark from '../assets/vuejsdark.png'
+import reactjsdark from '../assets/reactjsdark.png'
+import sassdark from '../assets/sassdark.png'
+import javascriptdark from '../assets/javascriptdark.png'
+import nodejsdark from '../assets/nodejsdark.png'
 
 const Skills = () => {
 	const { isDarkMode, toggleDarkMode} = useDarkMode();
+  const [selectedSkill, setSelectedSkill] = useState(null);
+
+  const skills = [
+    { id: 'skill1', name: 'Skill 1', description: 'Description for Skill 1', logo: figmadark },
+    { id: 'skill2', name: 'Skill 2', description: 'Description for Skill 2', logo: adobexddark },
+    { id: 'skill3', name: 'Skill 3', description: 'Description for Skill 3', logo: mongodbdark },
+    { id: 'skill4', name: 'Skill 4', description: 'Description for Skill 4', logo: mysqldark },
+    { id: 'skill5', name: 'Skill 5', description: 'Description for Skill 5', logo: gitdark },
+    { id: 'skill6', name: 'Skill 6', description: 'Description for Skill 6', logo: phpdark },
+    { id: 'skill7', name: 'Skill 7', description: 'Description for Skill 7', logo: tailwinddark },
+    { id: 'skill8', name: 'Skill 8', description: 'Description for Skill 8', logo: vuejsdark },
+    { id: 'skill9', name: 'Skill 9', description: 'Description for Skill 9', logo: reactjsdark },
+    { id: 'skill10', name: 'Skill 10', description: 'Description for Skill 10', logo: sassdark },
+    { id: 'skill11', name: 'Skill 11', description: 'Description for Skill 11', logo: javascriptdark },
+    { id: 'skill12', name: 'Skill 12', description: 'Description for Skill 12', logo: nodejsdark },
+];
+
+const handleSkillClick = (skill) => {
+  if (selectedSkill && skill.id === selectedSkill.id) {
+      setSelectedSkill(null); // Deselect and show all skills again
+  } else {
+      setSelectedSkill(skill); // Select the clicked skill and hide others
+  }
+};
 
   return (
 <div className={`parent ${isDarkMode ? 'dark-mode' : ''}`}>
@@ -26,8 +61,17 @@ const Skills = () => {
         <h1>Dmitr Cambur</h1>
         <h2>Frontttttt-End Developer</h2>
     </div>
-	<div className="div5">
-
+    <div className="div5">
+                <div className={`skills-table ${selectedSkill ? 'one-selected' : ''}`}>
+                    {skills.map(skill => (
+                        <div key={skill.id} className={`skill-icon ${selectedSkill && skill.id === selectedSkill.id ? 'selected' : ''}`} onClick={() => handleSkillClick(skill)}>
+                            <img src={skill.logo} alt={skill.name} />
+                            {selectedSkill && skill.id === selectedSkill.id && (
+                                <p className="skill-description">{skill.description}</p>
+                            )}
+                        </div>
+                    ))}
+                </div>
             </div>
       <div className="div6">
     <ul className="portfolio-list">
