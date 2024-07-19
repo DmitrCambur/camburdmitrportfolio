@@ -1,383 +1,457 @@
 .parent {
+  display: grid;
+  grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
+  grid-template-rows: 0.5fr repeat(6, 1fr) 0.5fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: "JetBrains Mono", monospace;
+  color: #191919;
+  background-color: #f5f5f5;
+}
+
+.parent > div {
+  box-sizing: border-box;
+}
+
+.div1 {
+  grid-area: 1 / 1 / 2 / 2;
+  border-right: none;
+  border-bottom: none;
+  background-color: #191919;
+  cursor: pointer;
+  border: 1px solid #191919;
+}
+.div2 {
+  grid-area: 8 / 12 / 9 / 13;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #191919;
+  border-right: none;
+  border-bottom: none;
+  padding: 13px;
+  box-sizing: border-box;
+}
+
+.div2 svg {
+  max-width: 100%;
+  max-height: 100%;
+  display: block;
+}
+
+.div3 {
+  grid-area: 2 / 2 / 8 / 12;
+  outline: 1px solid #191919;
+  position: relative;
+}
+.canvas-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Ensure it takes the full width */
+  height: 100%; /* Ensure it takes the full height */
+  z-index: 1; /* This ensures the canvas stays below other content */
+}
+.div4 {
+  grid-area: 2 / 2 / 4 / 4;
+  border-right: none;
+  z-index: 3;
+}
+.div5 {
+  grid-area: 2 / 10 / 4 / 12;
+  border-left: none;
+  z-index: 3;
+}
+.div6 {
+  grid-area: 6 / 2 / 8 / 4;
+  border-right: none;
+  z-index: 3;
+}
+.div7 {
+  grid-area: 6 / 10 / 8 / 12;
+  border-left: none;
+  z-index: 3;
+}
+.div8 {
+  grid-area: 8 / 1 / 9 / 2;
+  border: 1px solid #191919;
+  border-left: none;
+  border-bottom: none;
+}
+.div8 {
+  /* Existing styles */
+  position: relative; /* Ensures child elements are positioned relative to this div */
+}
+
+.div8 button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none; /* Removes the default border */
+  background: transparent; /* Ensures the button doesn't add any background color */
+  cursor: pointer; /* Cursor changes to hand when hovering over button */
+  padding: 0; /* Removes default padding */
+  font-size: inherit; /* Inherits font size from parent, can be adjusted */
+  color: inherit; /* Inherits color from parent, can be adjusted */
+}
+
+.div8 button:focus {
+  outline: none; /* Removes the default focus outline, but be careful about accessibility concerns */
+}
+
+.div9 {
+  grid-area: 1 / 12 / 2 / 13;
+  border: 1px solid #191919;
+  border-top: none;
+  border-right: none;
+}
+
+.div4 {
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  padding: 10px;
+  align-items: left;
+  font-family: "JetBrains Mono", monospace;
+}
+
+.div4 h1 {
+  font-weight: 700; /* Use the bold weight for h1 */
+  font-size: 2.7em; /* Adjust this value to your liking */
+}
+
+.div4 h2 {
+  font-weight: 400; /* Regular weight for h2 */
+  font-size: 1.5em; /* Adjust this value to your liking */
+  padding-left: 2px;
+}
+.div5 {
+  /* Adjust the grid area to take the necessary space */
+  grid-area: 2 / 8 / 8 / 12;
+  padding: 10px 10px 10px 10px;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1em;
+  overflow-y: auto;
+  line-height: 1.5;
+  text-align: justify;
+  scroll-behavior: smooth;
+}
+
+/* Further adjustments for even smaller screens */
+@media (min-width: 576px) {
+  .div5 {
+    /* Fine-tuning the text size and padding for readability */
+    font-size: 0.9em;
+    padding: 8px;
+  }
+
+  .episode__content .story {
+    font-size: 14px; /* Adjust the font size for smaller screens */
+  }
+}
+@media (max-width: 576px) {
+  .skills-table {
+    grid-template-columns: 1fr; /* Single column layout for smaller screens */
+    gap: 5px; /* Smaller gap between items */
+    max-width: 100%; /* Use full width */
+    padding: 10px; /* Adjust padding */
+  }
+  .parent {
     display: grid;
-    grid-template-columns: 0.5fr repeat(10, 1fr) 0.5fr;
-    grid-template-rows: 0.5fr repeat(6, 1fr) 0.5fr;
+    grid-template-columns: 0.5fr repeat(10, 0.3fr) 0.5fr;
+    grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: "JetBrains Mono", monospace;
     color: #191919;
-    background-color: #F5F5F5;
-}
+    background-color: #f5f5f5;
+  }
 
-.parent > div {
-    box-sizing: border-box;
-}
-
-.div1 { grid-area: 1 / 1 / 2 / 2; border-right: none; border-bottom: none;     background-color: #191919;
-    cursor: pointer;     border: 1px solid #191919;}
-    .div2 { 
-        grid-area: 8 / 12 / 9 / 13;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        border: 1px solid #191919;     
-        border-right: none;        
-        border-bottom: none;          
-        padding: 13px;                
-        box-sizing: border-box;  
-    }
-    
-
-    .div2 svg {
-        max-width: 100%;  
-        max-height: 100%;  
-        display: block;  
-    }
-    
-.div3 { 
-    grid-area: 2 / 2 / 8 / 12;
-    outline: 1px solid #191919;
-    position: relative;
-}
-.canvas-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;  /* Ensure it takes the full width */
-    height: 100%; /* Ensure it takes the full height */
-    z-index: 1;   /* This ensures the canvas stays below other content */
-}
-.div4 { grid-area: 2 / 2 / 4 / 4; border-right: none; z-index: 3; }
-.div5 { grid-area: 2 / 10 / 4 / 12; border-left: none; z-index: 3;}
-.div6 { grid-area: 6 / 2 / 8 / 4; border-right: none; z-index: 3;}
-.div7 { grid-area: 6 / 10 / 8 / 12; border-left: none; z-index: 3; }
-.div8 { 
-    grid-area: 8 / 1 / 9 / 2;
-    border: 1px solid #191919;  
-    border-left: none;            
-    border-bottom: none;        
-}
-.div8 {
-    /* Existing styles */
-    position: relative; /* Ensures child elements are positioned relative to this div */
-}
-
-.div8 button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;        /* Removes the default border */
-    background: transparent; /* Ensures the button doesn't add any background color */
-    cursor: pointer;     /* Cursor changes to hand when hovering over button */
-    padding: 0;          /* Removes default padding */
-    font-size: inherit;  /* Inherits font size from parent, can be adjusted */
-    color: inherit;      /* Inherits color from parent, can be adjusted */
-}
-
-.div8 button:focus {
-    outline: none;       /* Removes the default focus outline, but be careful about accessibility concerns */
-}
-
-
-.div9 { 
-    grid-area: 1 / 12 / 2 / 13;
-    border: 1px solid #191919; 
-    border-top: none;           
-    border-right: none;       
-}
-
-
-.div4 {
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    padding: 10px;
-    align-items: left;
-    font-family: 'JetBrains Mono', monospace;
-}
-
-.div4 h1 {
-    font-weight: 700; /* Use the bold weight for h1 */
-    font-size: 2.7em; /* Adjust this value to your liking */
-}
-
-.div4 h2 {
-    font-weight: 400; /* Regular weight for h2 */
-    font-size: 1.5em; /* Adjust this value to your liking */
-    padding-left: 2px;
-}
-.div5 {
-    /* Adjust the grid area to take the necessary space */
-    grid-area: 2 / 8 / 8 / 12; 
-    padding: 10px 10px 10px 10px ;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1em;
-    overflow-y: auto;
-    line-height: 1.5;
-    text-align: justify;
-    scroll-behavior: smooth;
+  .skill-icon img {
+    max-width: 50%; /* Smaller icons for smaller screens */
+  }
+  .div5 {
+    font-size: 0.8em;
+  }
+  /* Adjust any other styles as needed */
 }
 @media (max-width: 768px) {
-    .div5 {
-        /* Adjust the grid area to span the full width of the grid on smaller screens */
-        grid-area: 2 / 6 / 8 / -1;
-        padding: 10px;
-        text-align: justify;
-    }
+  .div5 {
+    /* Adjust the grid area to span the full width of the grid on smaller screens */
+    grid-area: 2 / 8 / 8 / 12;
+    padding: 10px;
+    text-align: justify;
+  }
+  .parent {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(10, 0.3fr) 0.5fr;
+    grid-template-rows: 0.5fr repeat(3, 1fr) 0.5fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace;
+    color: #191919;
+    background-color: #f5f5f5;
+  }
+
+  .div4 {
+    font-size: 0.65em;
+  }
+  .div5 {
+    font-size: 0.8em;
+  }
+  .div6 {
+    font-size: 0.8em;
+  }
+  .div8 {
+    font-size: 0.65em;
+  }
 }
-
-
-/* Further adjustments for even smaller screens */
-@media (min-width: 576px) {
-    .div5 {
-        /* Fine-tuning the text size and padding for readability */
-        font-size: 0.9em;
-        padding: 8px;
-    }
-
-    .episode__content .story {
-        font-size: 14px; /* Adjust the font size for smaller screens */
-    }
-}
-@media (max-width: 576px) {
-    .skills-table {
-        grid-template-columns: 1fr; /* Single column layout for smaller screens */
-        gap: 5px; /* Smaller gap between items */
-        max-width: 100%; /* Use full width */
-        padding: 10px; /* Adjust padding */
-    }
-
-    .skill-icon img {
-        max-width: 50%; /* Smaller icons for smaller screens */
-    }
-
-    /* Adjust any other styles as needed */
-}
-
 /* Hide scrollbars while still allowing scrolling */
 .div5::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 .div5 {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 /* Remove scrollbar for Internet Explorer and Edg	 e */
 .div5 {
-    -ms-overflow-style: none; /* IE 11+ */
+  -ms-overflow-style: none; /* IE 11+ */
 }
 
 .div6 {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding-left: 10px;  /* or adjust this value as needed */
-    padding-bottom: 10px;  /* padding to ensure the list doesn't touch the very bottom */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-left: 10px; /* or adjust this value as needed */
+  padding-bottom: 10px; /* padding to ensure the list doesn't touch the very bottom */
 }
 .div6 ul {
-    list-style-type: none;
-    padding-left: 0;
+  list-style-type: none;
+  padding-left: 0;
 }
 
 .div6 li {
-    position: relative;
+  position: relative;
 }
 
 .div6 a {
-    display: inline-block;
-    padding-left: 20px;
-    transition: padding-left 0.3s ease;
-    text-decoration: none;
+  display: inline-block;
+  padding-left: 20px;
+  transition: padding-left 0.3s ease;
+  text-decoration: none;
 }
 
 .div6 a:hover {
-    padding-left: 30px;
+  padding-left: 30px;
 }
 
 .div6 a:hover::before {
-    content: '';
-    position: absolute;
-    left: 2PX;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 12px;
-    height: 12px;
-    background-color: #191919;;
-    transition: all 0.3s ease;
+  content: "";
+  position: absolute;
+  left: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background-color: #191919;
+  transition: all 0.3s ease;
 }
 
-
 .portfolio-list {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .portfolio-list li {
-    margin-bottom: 10px;  /* adjust this value for spacing between items */
+  margin-bottom: 10px; /* adjust this value for spacing between items */
 }
 
 .portfolio-list a {
-    text-decoration: none;
-    color: #191919;  /* or any other color */
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.2em;  /* adjust this value for font size */
+  text-decoration: none;
+  color: #191919; /* or any other color */
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.2em; /* adjust this value for font size */
 }
 
 .portfolio-list a:hover {
-    text-decoration: none;  /* optional: style for hover effect */
+  text-decoration: none; /* optional: style for hover effect */
 }
-
 
 /* Dark Mode Styles */
 .parent.dark-mode {
-	color: #F5F5F5 !important;
-    background-color: #191919 !important;
+  color: #f5f5f5 !important;
+  background-color: #191919 !important;
 }
 
-
 .dark-mode .div1 {
-    background-color: #F5F5F5;
-    border: 1px solid #F5F5F5;
+  background-color: #f5f5f5;
+  border: 1px solid #f5f5f5;
 }
 
 .dark-mode .div2 {
-    border: 1px solid #F5F5F5;
-	border-right: none;        
-	border-bottom: none;    
+  border: 1px solid #f5f5f5;
+  border-right: none;
+  border-bottom: none;
 }
 
 .dark-mode .div3 {
-    outline: 1px solid #F5F5F5;
+  outline: 1px solid #f5f5f5;
 }
 
 .dark-mode .div8 {
-    border: 1px solid #F5F5F5;
-	border-left: none;            
-    border-bottom: none;  
+  border: 1px solid #f5f5f5;
+  border-left: none;
+  border-bottom: none;
 }
 
 .dark-mode .div9 {
-    border: 1px solid #F5F5F5;
-	border-top: none;           
-    border-right: none; 
+  border: 1px solid #f5f5f5;
+  border-top: none;
+  border-right: none;
 }
 
-
-.dark-mode .div4 h1, .dark-mode .div4 h2 {
-    color: #F5F5F5;
+.dark-mode .div4 h1,
+.dark-mode .div4 h2 {
+  color: #f5f5f5;
 }
 
 .dark-mode .div5 {
-    color: #F5F5F5;
+  color: #f5f5f5;
 }
 .input-light-mode {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 .input-dark-mode {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 .dark-mode .div6 a:hover::before {
-    background-color: #F5F5F5;
+  background-color: #f5f5f5;
 }
 
 .dark-mode .portfolio-list a {
-    color: #F5F5F5;
+  color: #f5f5f5;
 }
 .lines-container {
-  width: 100%;  /* Make the div take the full width of its parent */
+  width: 100%; /* Make the div take the full width of its parent */
   height: 100%; /* Make the div take the full height of its parent */
   position: relative; /* Establish a positioning context */
 }
 
 .dark-mode .icon {
-    fill: white; /* Or any desired color for dark mode */
+  fill: white; /* Or any desired color for dark mode */
 }
 
 .skills-table {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two columns */
-    grid-auto-rows: minmax(100px, auto); /* Dynamic row height */
-    gap: 10px; /* Space between grid items */
-    padding: 50px; /* Padding around the grid */
-    max-width: 450px; /* Adjust based on your layout */
-    margin: 0 auto; /* Centering the grid */
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Two columns */
+  grid-auto-rows: minmax(100px, auto); /* Dynamic row height */
+  gap: 10px; /* Space between grid items */
+  padding: 50px; /* Padding around the grid */
+  max-width: 450px; /* Adjust based on your layout */
+  margin: 0 auto; /* Centering the grid */
 }
 
 .skill-icon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: right;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    will-change: transform, box-shadow; /* Optimizes animations */
-    position: relative; /* Required for the pseudo-element */
-    overflow: hidden; /* Keeps pseudo-element within the icon's bounds */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: right;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  will-change: transform, box-shadow; /* Optimizes animations */
+  position: relative; /* Required for the pseudo-element */
+  overflow: hidden; /* Keeps pseudo-element within the icon's bounds */
 }
 
 .skill-icon img {
-    max-width: 80%; /* Adjust size of the icon */
-    transition: transform 0.3s ease;
+  max-width: 80%; /* Adjust size of the icon */
+  transition: transform 0.3s ease;
 }
 
 .skill-icon::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    z-index: 1;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
 }
 
 .skill-icon:hover {
-    transform: scale(1.05); /* Slightly enlarge the icon */
+  transform: scale(1.05); /* Slightly enlarge the icon */
 }
 
 .skill-icon:hover::after {
-    opacity: 1; /* Show the overlay on hover */
+  opacity: 1; /* Show the overlay on hover */
 }
 
 .skill-description {
-    position: absolute;
-    left: 110%; /* Position to the right of the icon */
-    top: 50%;
-    transform: translateX(-30px) translateY(-50%); /* Adjust for alignment */
-    opacity: 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index: 2;
-    white-space: nowrap; /* Prevents text wrapping */
-    /* Add more styling for the description text as needed */
+  position: absolute;
+  left: 110%; /* Position to the right of the icon */
+  top: 50%;
+  transform: translateX(-30px) translateY(-50%); /* Adjust for alignment */
+  opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 2;
+  white-space: nowrap; /* Prevents text wrapping */
+  /* Add more styling for the description text as needed */
 }
 
 .skill-icon:hover .skill-description,
 .skill-icon.selected .skill-description {
-    /* Animation on hover and when selected */
-    transform: translateX(0) translateY(-50%);
-    opacity: 1;
+  /* Animation on hover and when selected */
+  transform: translateX(0) translateY(-50%);
+  opacity: 1;
 }
 
 /* Adjustments for when a skill is selected */
 
 .skills-table.one-selected .skill-icon:not(.selected):hover {
-    transform: none; /* No scale effect */
-    box-shadow: none; /* No shadow */
+  transform: none; /* No scale effect */
+  box-shadow: none; /* No shadow */
 }
 
 .skill-icon.selected .skill-description {
-    display: block; /* Ensure description is visible for selected icon */
+  display: block; /* Ensure description is visible for selected icon */
+}
+
+@media (max-width: 1024px) {
+  .parent {
+    display: grid;
+    grid-template-columns: 0.5fr repeat(10, 0.6fr) 0.5fr;
+    grid-template-rows: 0.5fr repeat(3, 1.4fr) 0.5fr;
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: "JetBrains Mono", monospace;
+    color: #191919;
+    background-color: #f5f5f5;
+  }
+  .div8 {
+    font-size: 0.7em;
+  }
 }
